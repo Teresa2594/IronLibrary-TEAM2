@@ -31,12 +31,23 @@ public class Issue {
     public Issue() {
     }
 
-    public Issue(Integer issueId, Student student, Book book) {
-        this.issueId = issueId;
+    public Issue(Student student, Book book) {
+
         setIssueDate();
         setReturnDate();
         setStudent(student);
         setBook(book);
+    }
+
+    @Override
+    public String toString() {
+        return "Issue{" +
+                "issueId=" + issueId +
+                ", issueDate='" + issueDate + '\'' +
+                ", returnDate='" + returnDate + '\'' +
+                ", student=" + student +
+                ", book=" + book +
+                '}';
     }
 
     public Integer getIssueId() {
@@ -80,4 +91,6 @@ public class Issue {
     public void setBook(Book book) {
         this.book = book;
     }
+
+
 }
