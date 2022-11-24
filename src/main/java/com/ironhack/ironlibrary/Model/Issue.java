@@ -1,6 +1,8 @@
 package com.ironhack.ironlibrary.Model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class Issue {
@@ -24,27 +26,27 @@ public class Issue {
     public Issue() {
     }
 
-    public Issue(Integer issueId, String issueDate, String returnDate, Student student, Book book) {
+    public Issue(Integer issueId, Student student, Book book) {
         this.issueId = issueId;
-        this.issueDate = issueDate;
-        this.returnDate = returnDate;
-        this.student = student;
-        this.book = book;
+        setIssueDate();
+        setReturnDate();
+        setStudent(student);
+        setBook(book);
     }
 
     public Integer getIssueId() {
         return issueId;
     }
 
-    public void setIssueId(Integer issueId) {
-        this.issueId = issueId;
-    }
+
 
     public String getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(String issueDate) {
+    public void setIssueDate() {
+        LocalDate date = LocalDate.now();
+        issueDate = date.toString();
         this.issueDate = issueDate;
     }
 
@@ -52,7 +54,8 @@ public class Issue {
         return returnDate;
     }
 
-    public void setReturnDate(String returnDate) {
+    public void setReturnDate()
+    {
         this.returnDate = returnDate;
     }
 
