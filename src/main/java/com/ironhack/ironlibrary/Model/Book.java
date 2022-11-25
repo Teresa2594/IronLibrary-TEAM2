@@ -1,8 +1,12 @@
 package com.ironhack.ironlibrary.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Book {
@@ -11,17 +15,19 @@ public class Book {
     private String isbn;
 
     private String title;
-    private String cathegory;
+    private String category;
     private Integer quantity;
+
 
     public Book() {
     }
 
-    public Book(String isbn, String title, String cathegory, Integer quantity) {
+    public Book(String isbn, String title, String category, Integer quantity) {
         this.isbn = isbn;
         this.title = title;
-        this.cathegory = cathegory;
+        this.category = category;
         this.quantity = quantity;
+
     }
 
     public String getIsbn() {
@@ -29,8 +35,10 @@ public class Book {
     }
 
     public void setIsbn(String isbn) {
+
         this.isbn = isbn;
     }
+
 
     public String getTitle() {
         return title;
@@ -40,12 +48,12 @@ public class Book {
         this.title = title;
     }
 
-    public String getCathegory() {
-        return cathegory;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCathegory(String cathegory) {
-        this.cathegory = cathegory;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Integer getQuantity() {
@@ -61,7 +69,7 @@ public class Book {
         return "Book: " +
                 "isbn: '" + isbn + '\'' +
                 ", title: '" + title + '\'' +
-                ", cathegory: '" + cathegory + '\'' +
+                ", category: '" + category + '\'' +
                 ", quantity: " + quantity +
                 '.';
     }
