@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, String> {
 
-    //Metodo para poder buscar un estudiante
-    Optional<Student> findByUsn(String usn);
+
 }

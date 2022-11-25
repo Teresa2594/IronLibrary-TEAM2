@@ -8,14 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-
 @Repository
 public interface AuthorRepository extends JpaRepository<Author,Integer> {
 
-    // List all books along with author
-    List<Book> findAllByAuthorBook(String author);
-
-    //Metodo para buscar un autor por nombre
-    Optional<Author> findByName (String name);
+    Optional<Author> findByName(String author);
+    List<Book>findAllByAuthorBook(String author);
+    Book findByAuthorBook(String author);
 
 }

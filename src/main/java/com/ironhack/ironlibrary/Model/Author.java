@@ -19,7 +19,7 @@ public class Author {
     public Author() {
     }
 
-    public Author(Integer authorId, String name, String email, Book authorBook) {
+    public Author(String name, String email, Book authorBook) {
         this.authorId = authorId;
         this.name = name;
         this.email = email;
@@ -30,9 +30,7 @@ public class Author {
         return authorId;
     }
 
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
-    }
+
 
     public String getName() {
         return name;
@@ -56,5 +54,15 @@ public class Author {
 
     public void setAuthorBook(Book authorBook) {
         this.authorBook = authorBook;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "authorId=" + authorId +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", authorBook=" + authorBook +
+                '}';
     }
 }

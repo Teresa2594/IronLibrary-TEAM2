@@ -21,33 +21,22 @@ public class Issue {
 
 
     @OneToOne
-    @JoinColumn(name="usn_student")
+    @JoinColumn(name = "usn_student")
     private Student student;
 
     @OneToOne
-    @JoinColumn(name="issue_book")
+    @JoinColumn(name = "issue_book")
     private Book book;
 
     public Issue() {
     }
 
     public Issue(Student student, Book book) {
-
+        this.issueId = issueId;
         setIssueDate();
         setReturnDate();
         setStudent(student);
         setBook(book);
-    }
-
-    @Override
-    public String toString() {
-        return "Issue{" +
-                "issueId=" + issueId +
-                ", issueDate='" + issueDate + '\'' +
-                ", returnDate='" + returnDate + '\'' +
-                ", student=" + student +
-                ", book=" + book +
-                '}';
     }
 
     public Integer getIssueId() {
@@ -55,25 +44,20 @@ public class Issue {
     }
 
 
-
     public String getIssueDate() {
         return issueDate;
     }
 
     public void setIssueDate() {
-        this.issueDate =  LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
+        this.issueDate = LocalDate.now().toString();
     }
 
     public String getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate()  {
-
-        LocalDate date  = new LocalDateType().fromString(this.issueDate).plusDays(7);
-
-        this.returnDate = date.toString();
+    public void setReturnDate() {
+        this.returnDate = LocalDate.now().plusDays(7).toString();
     }
 
     public Student getStudent() {
@@ -92,5 +76,14 @@ public class Issue {
         this.book = book;
     }
 
-
+    @Override
+    public String toString() {
+        return "Issue{" +
+                "issueId=" + issueId +
+                ", issueDate='" + issueDate + '\'' +
+                ", returnDate='" + returnDate + '\'' +
+                ", student=" + student +
+                ", book=" + book +
+                '}';
+    }
 }
