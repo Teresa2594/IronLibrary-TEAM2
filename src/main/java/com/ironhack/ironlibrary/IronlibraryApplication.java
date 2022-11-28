@@ -9,31 +9,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
 @SpringBootApplication
 public class IronlibraryApplication {
 
-@Autowired
+    @Autowired
 
 
     public static void main(String[] args) {
         ApplicationContext applicationContext = SpringApplication.run(IronlibraryApplication.class, args);
-        Utils myClass = applicationContext.getBean(Utils.class);
-        Book book1 = new Book("B08","Prueba", "Comedia",10);
-        Author author1 = new Author("Adri","adri@gmail.com",book1);
-        Student student1 = new Student("S002","David");
-        Issue issue1 = new Issue(student1,book1);
+        Utils utils = applicationContext.getBean(Utils.class);
 
-
-       // myClass.addBook("b03","prueba","kaka",8,"gema","email@email.com");
-       // myClass.findBookByTitle(book1.getTitle());
-       // myClass.findBookByCategory("Comedia");
-        // myClass.findBookByAuthor("gema");
-       // myClass.findAllByAuthorBook("gema");
-    //myClass.addNewIssue("s04","mai","b03");
-   // myClass.showBookByUsn("s04");
-    myClass.exit();
+       utils.menu();
+    }
     }
 
-
-
-}
