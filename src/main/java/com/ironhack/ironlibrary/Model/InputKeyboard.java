@@ -88,4 +88,35 @@ public class InputKeyboard {
     }
 
     private static boolean exceptionIsActive = true;
+
+    //Check email
+    public static String checkEmail( String question,boolean test, Scanner scanner)  {
+
+        String input="";
+        int stringToInt = 0;
+        String stringChecked="";
+
+        while (exceptionIsActive) {
+            System.out.println(Constants.ANSI_YELLOW+question+Constants.ANSI_RESET);
+            try {
+                input = test? "": scanner.nextLine();
+                stringChecked=input;
+
+                if (input.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$"
+                )) {
+                    exceptionIsActive=false;
+                } else {
+                    throw new InputException("Invalid email");
+                }
+            } catch (InputException e) {
+                System.out.println(e.getMessage());
+                if(test) throw new InputException("");
+            }
+
+        }
+        setExceptionIsActive(true);
+        return stringChecked;
+
+    }
 }
