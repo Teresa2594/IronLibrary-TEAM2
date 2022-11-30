@@ -8,12 +8,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book,String> {
+public interface BookRepository extends JpaRepository<Book, String> {
 
-    //Metodo para poder buscar el libro por su isbn
-    Optional<Book> findByIsbn(String isbn);
+
     Optional<Book> findByTitle(String title);
+
     Optional<Book> findOneByCategory(String category);
+
     List<Book> findAllByCategory(String title);
 
 }

@@ -1,4 +1,4 @@
-package com.ironhack.ironlibrary.Model;
+package com.ironhack.ironlibrary.Assets;
 
 public class InputException extends IllegalArgumentException {
     public InputException(String message) {
