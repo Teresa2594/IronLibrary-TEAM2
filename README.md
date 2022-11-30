@@ -21,25 +21,25 @@ Para poder realizar cada una de estas funciones, el usuario debe pasar por conso
 
 Este paquete contiene las siguientes clases: 
 
-Constants: Almacena las constantes relacionadas a los códigos de color de fuente. 
+* Constants: Almacena las constantes relacionadas a los códigos de color de fuente. 
 
-InputExcepcion: Almacena una excepción personalizada, a partir de la clase Excepcion, que será utilizada para el control de errores. 
+* InputExcepcion: Almacena una excepción personalizada, a partir de la clase Excepcion, que será utilizada para el control de errores. 
 
-InputKeyboard: Contiene todos los métodos relacionados al input de parámetros por parte del usuario. 
+* InputKeyboard: Contiene todos los métodos relacionados al input de parámetros por parte del usuario. 
 
-Utils: Contiene todos los métodos con la lógica necesaria para el desarrollo de la aplicación. 
+* Utils: Contiene todos los métodos con la lógica necesaria para el desarrollo de la aplicación. 
 
 ### 2.- Models
 
 Este paquete contiene las siguientes clases: 
 
-Book
+* Book
 
-Author
+* Author
 
-Student
+* Student
 
-Issue 
+* Issue 
 
 Cada una de estas clases contempla las variables correspondientes a cada entidad de la base de datos. 
 
