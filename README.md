@@ -48,7 +48,7 @@ Cada una de estas clases contempla las variables correspondientes a cada entidad
 Este paquete contiene los repositorios de cada una de las clase que son utilizados para la inyección de dependencias. 
 
 ## UML Diagram<br>
-![My Image](UML.png)
+![My Image](UML.jpg)
 
 
 Créditos
