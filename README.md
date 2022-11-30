@@ -54,8 +54,8 @@ Créditos
 
 Este proyecto se ha realizado gracias a los siguientes colaboladores:
 
-Teresa Mira @Teresa2594
-Victor Sobrinos @VictorSobrinos
-Fernando Camacho @fernandojcm
-Martina Dorado @MartuDorado
+Teresa Mira @Teresa2594<br>
+Victor Sobrinos @VictorSobrinos<br>
+Fernando Camacho @fernandojcm<br>
+Martina Dorado @MartuDorado<br>
 
