@@ -51,7 +51,7 @@ Este paquete contiene los repositorios de cada una de las clase que son utilizad
 ![My Image](UML.jpg)
 
 
-Créditos
+### Créditos
 
 Este proyecto se ha realizado gracias a los siguientes colaboladores:
 
