@@ -14,9 +14,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import com.ironhack.ironlibrary.Repository.AuthorRepository;
 import org.springframework.stereotype.Component;
+
+import static com.ironhack.ironlibrary.Assets.Constants.ANSI_BLUE;
+import static com.ironhack.ironlibrary.Assets.Constants.ANSI_RESET;
 
 @Component
 public class Utils {
@@ -90,7 +94,7 @@ public class Utils {
                         b = false;
                     }
                 }
-            } catch (IllegalArgumentException iae) {
+            } catch (IllegalArgumentException | InterruptedException iae) {
                 System.out.println("Fatal error");
                 showOptions();
             }
@@ -104,15 +108,15 @@ public class Utils {
     public void showOptions() {
         //First show options
         System.out.println();
-        System.out.println(Constants.ANSI_CYAN + "----------------------------------------------------------------------------- " + Constants.ANSI_RESET);
-        System.out.println(Constants.ANSI_CYAN + "1. ADD A BOOK:" + Constants.ANSI_RESET + " This action is responsible of adding a book and its author in the system.\n" +
-                Constants.ANSI_CYAN + "2. SEARCH BOOK BY TITLE :" + Constants.ANSI_RESET + " This action is responsible for searching a book by title.\n" +
-                Constants.ANSI_CYAN + "3. SEARCH BOOK BY CATEGORY:" + Constants.ANSI_RESET + " This action is responsible for searching a book by category.\n" +
-                Constants.ANSI_CYAN + "4. SEARCH BOOK BY AUTHOR:" + Constants.ANSI_RESET + "  This action is responsible for searching a book by author name.\n" +
-                Constants.ANSI_CYAN + "5. LIST ALL BOOKS ALONG WITH AUTHOR:" + Constants.ANSI_RESET + " This action is responsible for listing all the books available and there corresponding authors.\n" +
-                Constants.ANSI_CYAN + "6. ISSUE BOOK TO STUDENT:" + Constants.ANSI_RESET + " This action is responsible for creating a student and issuing him/her the specified book.\n" +
-                Constants.ANSI_CYAN + "7. LIST BOOKS BY USN:" + Constants.ANSI_RESET + "This action is responsible for listing all books rented by the specified student..\n" +
-                Constants.ANSI_CYAN + "8. SHOW BOOKS TO BE RETURNED TODAY:" + Constants.ANSI_RESET + "This action is responsible for listing all books to be returned today..\n" +
+        System.out.println(Constants.ANSI_CYAN + "----------------------------------------------------------------------------- " + ANSI_RESET);
+        System.out.println(Constants.ANSI_CYAN + "1. ADD A BOOK:" + ANSI_RESET + " This action is responsible of adding a book and its author in the system.\n" +
+                Constants.ANSI_CYAN + "2. SEARCH BOOK BY TITLE :" + ANSI_RESET + " This action is responsible for searching a book by title.\n" +
+                Constants.ANSI_CYAN + "3. SEARCH BOOK BY CATEGORY:" + ANSI_RESET + " This action is responsible for searching a book by category.\n" +
+                Constants.ANSI_CYAN + "4. SEARCH BOOK BY AUTHOR:" + ANSI_RESET + "  This action is responsible for searching a book by author name.\n" +
+                Constants.ANSI_CYAN + "5. LIST ALL BOOKS ALONG WITH AUTHOR:" + ANSI_RESET + " This action is responsible for listing all the books available and there corresponding authors.\n" +
+                Constants.ANSI_CYAN + "6. ISSUE BOOK TO STUDENT:" + ANSI_RESET + " This action is responsible for creating a student and issuing him/her the specified book.\n" +
+                Constants.ANSI_CYAN + "7. LIST BOOKS BY USN:" + ANSI_RESET + "This action is responsible for listing all books rented by the specified student..\n" +
+                Constants.ANSI_CYAN + "8. SHOW BOOKS TO BE RETURNED TODAY:" + ANSI_RESET + "This action is responsible for listing all books to be returned today..\n" +
                 Constants.ANSI_RED + "9. EXIT" + Constants.ANSI_RED);
     }
 
@@ -120,7 +124,7 @@ public class Utils {
     /**
      * @Description addBook(): this method will create a book with its author and save them
      */
-    public void addBook() {
+    public void addBook() throws InterruptedException {
 
         String isbn = null;
         String category = null;
@@ -139,6 +143,7 @@ public class Utils {
                 }
             } catch (IllegalArgumentException iae) {
                 System.out.println(iae.getMessage());
+                TimeUnit.MILLISECONDS.sleep(1000);
 
             }
         }
@@ -154,6 +159,7 @@ public class Utils {
                 }
             } catch (IllegalArgumentException iae) {
                 System.out.println(iae.getMessage());
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
 
         }
@@ -170,7 +176,7 @@ public class Utils {
                 }
             } catch (IllegalArgumentException iae) {
                 System.out.println(iae.getMessage());
-
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
         }
         isPresent = true;
@@ -186,7 +192,7 @@ public class Utils {
                 }
             } catch (IllegalArgumentException iae) {
                 System.out.println(iae.getMessage());
-
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
         }
         isPresent = true;
@@ -202,6 +208,7 @@ public class Utils {
 
             } catch (InputException ie) {
                 System.out.println(ie.getMessage());
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
         }
 
@@ -210,14 +217,16 @@ public class Utils {
 
         Author author = new Author(authorName, email, book);
         authorRepository.save(author);
-
+        System.out.println();
+        System.out.println(ANSI_BLUE + book.getTitle() + " added successfully." + ANSI_RESET);
+        TimeUnit.MILLISECONDS.sleep(1000);
     }
 
 
     /**
      * @Description findBookByTitle(): this method will search a book using its title as a parameter
      */
-    public void findBookByTitle() {
+    public void findBookByTitle() throws InterruptedException {
 
         while (isPresent) {
             try {
@@ -233,8 +242,10 @@ public class Utils {
                 Book book = bookRepository.findByTitle(titleBook).get();
 
                 System.out.println(book.toString());
-            } catch (IllegalArgumentException iae) {
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (IllegalArgumentException | InterruptedException iae) {
                 System.out.println(iae.getMessage());
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
         }
         isPresent = true;
@@ -244,7 +255,7 @@ public class Utils {
     /**
      * @Description findBookByCategory(): this method will search a book using its category as a parameter
      */
-    public void findBookByCategory() {
+    public void findBookByCategory() throws InterruptedException {
 
         while (isPresent) {
             try {
@@ -256,9 +267,12 @@ public class Utils {
                 }
 
                 List<Book> bookList = bookRepository.findAllByCategory(categoryBook);
+
                 System.out.println(bookList);
-            } catch (IllegalArgumentException iae) {
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (IllegalArgumentException | InterruptedException iae) {
                 System.out.println(iae.getMessage());
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
 
         }
@@ -270,7 +284,7 @@ public class Utils {
     /**
      * @Description findBookByAuthor(): this method will search a book using its author's name as a parameter
      */
-    public void findBookByAuthor() {
+    public void findBookByAuthor() throws InterruptedException {
 
         while (isPresent) {
             try {
@@ -284,9 +298,10 @@ public class Utils {
                 Author author1 = authorRepository.findByName(author).get();
                 Book book = author1.getAuthorBook();
                 System.out.println(book);
-
-            } catch (IllegalArgumentException iae) {
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (IllegalArgumentException | InterruptedException iae) {
                 System.out.println(iae.getMessage());
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
         }
         isPresent = true;
@@ -297,7 +312,7 @@ public class Utils {
     /**
      * @Description findBookByAuthor(): this method will search a booklist using their author's name as a parameter
      */
-    public void findAllByAuthorBook() {
+    public void findAllByAuthorBook() throws InterruptedException {
 
         while (isPresent) {
             try {
@@ -312,8 +327,10 @@ public class Utils {
                 bookList.add(author1.getAuthorBook());
 
                 System.out.println(bookList);
-            } catch (IllegalArgumentException iae) {
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (IllegalArgumentException | InterruptedException iae) {
                 System.out.println(iae.getMessage());
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
 
         }
@@ -324,7 +341,7 @@ public class Utils {
     /**
      * @Description addNewIssue(): this method will generate a new issue creating a new student and linking a book to him
      */
-    public void addNewIssue() {
+    public void addNewIssue() throws InterruptedException {
 
         String usn = null;
         String name = null;
@@ -342,7 +359,7 @@ public class Utils {
                 }
             } catch (IllegalArgumentException iae) {
                 System.out.println(iae.getMessage());
-
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
         }
         isPresent = true;
@@ -361,7 +378,7 @@ public class Utils {
                 }
             } catch (IllegalArgumentException iae) {
                 System.out.println(iae.getMessage());
-
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
         }
         isPresent = true;
@@ -380,13 +397,16 @@ public class Utils {
             Issue nuevaIssue = new Issue(student, book);
             issueRepository.save(nuevaIssue);
 
+            System.out.println();
+            System.out.println(ANSI_BLUE + "Issue " + " added successfully." + ANSI_RESET);
             System.out.println(nuevaIssue.toString());
-
+            TimeUnit.MILLISECONDS.sleep(1000);
         } catch (InputException ie) {
             System.out.println(ie.getMessage());
-            System.out.println("This book will be available on: ");
+            System.out.println(ANSI_BLUE + "This book will be available on: " + ANSI_RESET);
             List<String> listDates = showReturnDate(book);
             System.out.println(listDates.toString());
+            TimeUnit.MILLISECONDS.sleep(1000);
         }
     }
 
@@ -395,7 +415,7 @@ public class Utils {
      * @return List<String>
      * @Description showReturnDate: this method will show the return date of the book passed as a parameter
      */
-    public List<String> showReturnDate(Book book) {
+    public List<String> showReturnDate(Book book) throws InterruptedException {
         List<String> returnDates = new ArrayList<>();
 
         List<Issue> issueBooks = issueRepository.findAllByBook(book);
@@ -403,12 +423,13 @@ public class Utils {
             returnDates.add(i.getReturnDate().toString());
         }
         return returnDates;
+
     }
 
     /**
      * @Description showReturnDate(): this method will show a list of books to be returned today
      */
-    public void showReturnDate() {
+    public void showReturnDate() throws InterruptedException {
         List<String> returnDates = new ArrayList<>();
         List<Issue> issueBooks = issueRepository.findAll();
 
@@ -422,13 +443,16 @@ public class Utils {
             continue;
 
         }
+        System.out.println();
+        System.out.println(ANSI_BLUE + "Books to return today:" + ANSI_RESET);
         System.out.println(returnDates.toString());
+        TimeUnit.MILLISECONDS.sleep(1000);
     }
 
     /**
      * @Description showBookByUsn(): this method will display a book using its student's usn as a parameter
      */
-    public void showBookByUsn() {
+    public void showBookByUsn() throws InterruptedException {
 
         while (isPresent) {
             try {
@@ -443,10 +467,11 @@ public class Utils {
                 Issue issue = issueRepository.findByStudent(student).get();
                 Book book = issue.getBook();
                 System.out.println(book.toString());
+                TimeUnit.MILLISECONDS.sleep(1000);
 
-
-            } catch (IllegalArgumentException iae) {
+            } catch (IllegalArgumentException | InterruptedException iae) {
                 System.out.println(iae.getMessage());
+                TimeUnit.MILLISECONDS.sleep(1000);
             }
         }
         isPresent = true;
@@ -457,7 +482,9 @@ public class Utils {
     /**
      * @Description exit(): this method stop the application from running
      */
-    public void exit() {
+    public void exit() throws InterruptedException {
+        System.out.println(ANSI_BLUE + "exiting program..."+ ANSI_RESET);
+        TimeUnit.MILLISECONDS.sleep(1000);
         System.exit(0);
     }
 
